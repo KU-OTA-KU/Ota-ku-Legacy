@@ -25,5 +25,20 @@ npm run test:unit
 npm run lint
 ```
 
+### add android platform
+```
+npm install @capacitor/android
+npx cap add android
+```
+
+### add ios platform
+```
+npx cap add ios
+```
+
+### update capacitor platform
+```
+npx cap sync
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
