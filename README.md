@@ -33,7 +33,7 @@ npx cap add android
 
 ### add ios platform
 ```
-npx cap add ios
+npx cap add ios --legacy-peer-deps  
 ```
 
 ### update capacitor platform
