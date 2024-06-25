@@ -1,14 +1,11 @@
 <template>
-  <v-app>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
+      <router-view/>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
+import '@/sass/_App.sass';
+import {compileToFunction, defineComponent, watch} from "vue";
+import { RouteLocationNormalized, Router } from 'vue-router';
 export default defineComponent({
   name: "App",
 
@@ -16,6 +13,17 @@ export default defineComponent({
     return {
       //
     };
+  },
+  mounted() {
+    watch(
+        () => this.$route,
+        (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
+          console.log('routeChanged:', to.fullPath);
+          setTimeout(function compileToFunction() {
+            window.scrollTo({top: 0});
+          },1)
+        }
+    );
   },
 });
 </script>

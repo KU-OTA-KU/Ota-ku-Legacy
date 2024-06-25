@@ -39,6 +39,15 @@ npx cap add ios
 ### update capacitor platform
 ```
 npx cap sync
+npx cap copy android
+npx cap open android
+
 ```
+
+### push in git
+```
+git push -u origin master
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

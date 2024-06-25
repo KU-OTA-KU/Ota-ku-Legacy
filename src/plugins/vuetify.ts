@@ -5,7 +5,7 @@ import "vuetify/styles";
 // Vuetify
 import { createVuetify } from "vuetify";
 
-const customDarkOne= {
+const customDarkTheme= {
     dark: true,
     colors: {
         background: '#ffffff',
@@ -25,7 +25,7 @@ export default createVuetify({
     theme: {
         defaultTheme: 'dark',
         themes: {
-            customDarkOne,
+            customDarkTheme,
         }
     }
 })
