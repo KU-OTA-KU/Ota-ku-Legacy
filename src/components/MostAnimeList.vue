@@ -27,7 +27,7 @@
             <v-col v-for="anime in category.anime" :key="anime.id" cols="6" xxl="2" xl="2" lg="2" md="3"
                    sm="4" xs="4" class="pa-2">
               <v-card variant="text" link rounded="lg" @click="openDialog(anime)">
-                <v-img :lazy-src="anime.poster.main2xUrl" :src="anime.poster.main2xUrl"
+                <v-img :lazy-src="anime.poster.miniUrl" :src="anime.poster.mainUrl"
                        :alt="anime.name"
                        rounded="lg" aspect-ratio="0.7" cover
                        style="pointer-events: none; user-select: none;"></v-img>
@@ -87,8 +87,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    main2xUrl
-                    originalUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -102,8 +102,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    main2xUrl
-                    originalUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -117,8 +117,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    originalUrl
-                    main2xUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -132,8 +132,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    originalUrl
-                    main2xUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -147,8 +147,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    originalUrl
-                    main2xUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -162,8 +162,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    originalUrl
-                    main2xUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year
@@ -177,8 +177,8 @@ export default defineComponent({
                   description
                   videos { playerUrl }
                   poster {
-                    originalUrl
-                    main2xUrl
+                    miniUrl
+                    mainUrl
                   }
                   airedOn {
                     year

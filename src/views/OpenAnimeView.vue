@@ -36,8 +36,8 @@
                             rounded="lg"
                             aspect-ratio="0.7"
                             cover
-                            :lazy-src="animeList.poster.originalUrl"
-                            :src="animeList.poster.originalUrl"
+                            :lazy-src="animeList.poster.miniUrl"
+                            :src="animeList.poster.mainUrl"
                         >
                         </v-img>
                     </div>
@@ -70,14 +70,7 @@
                         <v-card-title class="pa-0">Кадры</v-card-title>
                         <v-card-subtitle class="pa-0">Топ кадры из аниме</v-card-subtitle>
                         <v-row no-gutters justify="center" style="width: 100%; height: 100%;">
-                            <v-col v-if="screenshots.length === 0" cols="6" xxl="3" xl="3" lg="3" md="3" sm="3" xs="5"
-                                   class="pa-2" v-for="n in 4">
-                                <v-skeleton-loader
-                                    type="image"
-                                >
-                                </v-skeleton-loader>
-                            </v-col>
-                            <v-col v-else cols="6" xxl="3" xl="3" lg="3" md="3" sm="3" xs="5" class="pa-2"
+                            <v-col cols="6" xxl="3" xl="3" lg="3" md="3" sm="3" xs="5" class="pa-1 pa-xs-1 pa-sm-1 pa-md-2 pa-lg-2 pa-xl-2 pa-xxl-2"
                                    v-for="(image, index) in screenshots">
                                 <v-img
                                     width="100%"
@@ -118,7 +111,7 @@
                                     type="image, list-item-two-line"
                                 ></v-skeleton-loader>
                             </v-col>
-                            <v-col v-else cols="6" xxl="3" xl="3" lg="3" md="4" sm="4" xs="5" class="pa-2"
+                            <v-col v-else cols="6" xxl="3" xl="3" lg="3" md="4" sm="4" xs="5" class="pa-1 pa-xs-1 pa-sm-1 pa-md-2 pa-lg-2 pa-xl-2 pa-xxl-2"
                                    v-for="related in relatedAnime" @click="this.openAnime(related.id);">
                                 <v-card link variant="text">
                                     <v-img
@@ -155,10 +148,10 @@
 
 <script lang="ts">
 import axios from 'axios';
-import {cleanDescription} from "../ts/cleanDescription";
-import {formatDate} from "../ts/formatDate";
+import {cleanDescription} from "@/ts/cleanDescription";
+import {formatDate} from "@/ts/formatDate";
 import moment from 'moment-timezone';
-import {openAnime} from "../ts/goTo.ts";
+import {openAnime} from "@/ts/goTo.ts";
 
 export default {
     mounted() {
@@ -213,8 +206,8 @@ export default {
                             nextEpisodeAt
                             genres { id russian }
                             studios { id name }
-                            poster { originalUrl }
-                            screenshots { id originalUrl }
+                            poster { originalUrl miniUrl mainUrl}
+                            screenshots { id x332Url }
                             related { id anime { id russian poster { main2xUrl } } relationRu }
                           }
                         }
@@ -232,7 +225,7 @@ export default {
                     this.animeList = response.data.data.animes[0];
                     this.genres = this.animeList.genres.map(item => item.russian);
                     this.studios = this.animeList.studios.map(item => item.name);
-                    this.screenshots = this.animeList.screenshots.slice(0, 4).map(item => item.originalUrl);
+                    this.screenshots = this.animeList.screenshots.slice(0, 4).map(item => item.x332Url);
                     this.relatedAnime = this.animeList.related
                         .filter(item => item.anime !== null)
                         .map(item => ({
@@ -241,7 +234,6 @@ export default {
                             main2xUrl: item.anime.poster.main2xUrl,
                             relationRu: item.relationRu
                         }));
-                    console.log(this.relatedAnime)
                 }
             } catch (error) {
                 this.$router.push(`/error`);
