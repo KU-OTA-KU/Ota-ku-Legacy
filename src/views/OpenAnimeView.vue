@@ -70,7 +70,7 @@
           <v-card rounded="lg" variant="text">
             <v-card-title class="pa-0">Кадры</v-card-title>
             <v-card-subtitle class="pa-0">Топ кадры из аниме</v-card-subtitle>
-            <v-slide-group direction="horizontal">
+            <v-slide-group center-active>
               <v-slide-group-item
                   v-for="(image, index) in screenshots">
                 <v-img

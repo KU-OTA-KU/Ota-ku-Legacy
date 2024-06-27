@@ -30,6 +30,7 @@
   "devDependencies": {
     "@capacitor/cli": "^6.1.0",
     "@types/jest": "^27.0.1",
+    "@types/lodash": "^4.17.5",
     "@types/webfontloader": "^1.0.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
