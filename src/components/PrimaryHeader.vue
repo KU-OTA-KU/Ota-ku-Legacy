@@ -61,7 +61,7 @@
       <v-spacer></v-spacer>
       <v-btn value="nearby" width="120px" rounded="xl" :variant="getButtonVariant('/releases')" disabled theme="customDarkTheme">
         <v-icon>mdi-filmstrip-box-multiple</v-icon>
-        <span>Библатека</span>
+        <span>Библиотека</span>
       </v-btn>
     </v-bottom-navigation>
   </v-layout>
