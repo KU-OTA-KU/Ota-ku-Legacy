@@ -4,7 +4,7 @@
             <div class="most-anime-dialog-modal-panel-one">
                 <v-carousel style="width: 100%;" class="most-anime-dialog-modal-carousel" hide-delimiters>
                     <v-carousel-item>
-                        <v-img :lazy-src="selectedAnime.poster.miniUrl" :src="selectedAnime.poster.mainUrl" :alt="selectedAnime.name" width="100%" cover></v-img>
+                        <v-img :lazy-src="selectedAnime.poster.miniUrl" :src="selectedAnime.poster.originalUrl" :alt="selectedAnime.name" width="100%" cover></v-img>
                     </v-carousel-item>
                     <v-carousel-item v-for="video in selectedAnime.videos">
                         <iframe

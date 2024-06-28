@@ -89,6 +89,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -104,6 +105,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -119,6 +121,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -134,6 +137,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -149,6 +153,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -164,6 +169,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year
@@ -179,6 +185,7 @@ export default defineComponent({
                   poster {
                     miniUrl
                     mainUrl
+                    originalUrl
                   }
                   airedOn {
                     year

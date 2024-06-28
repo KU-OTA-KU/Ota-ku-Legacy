@@ -2,9 +2,11 @@
   <v-card class="mt-4 mb-13" variant="text">
     <v-card-title class="pa-0">Каталог релизов</v-card-title>
     <v-card-subtitle class="pa-0">Самые новые и свежие эпизоды в каталоге</v-card-subtitle>
-    <v-row no-gutters class="mt-4">
-      <v-text-field label="Поиск..." variant="solo-filled" hide-details density="comfortable"
-                    v-model="searchQuery" @input="filterAnimeList(searchQuery)"></v-text-field>
+    <v-row no-gutters class="mt-4 flex-nowrap">
+      <v-form @submit.prevent="submitForm" action="#" method="GET" class="w-100">
+        <v-text-field label="Что будем искать в мире аниме?" variant="solo-filled" hide-details density="comfortable" autocomplete="off"
+                      v-model="searchQuery" ></v-text-field>
+      </v-form>
       <v-btn :icon="sidebarVisible ? 'mdi-close' : 'mdi-filter'" rounded="" class="ml-4" variant="tonal"
              density="default" @click="toggleSidebar">
       </v-btn>
@@ -177,6 +179,7 @@ export default {
     animeFoundInitialized: false,
     cleanDescription,
     getImgUrl,
+    searchQuery: '',
     error,
     finished: false,
     selectedAnime: {},
@@ -387,6 +390,9 @@ export default {
       this.fetchAnimeData();
       window.scrollTo({top: 0});
     },
+    submitForm() {
+      window.location.href = `/catalog?search=${encodeURIComponent(this.searchQuery)}`;
+    },
     getUrlParams() {
       const searchParams = new URLSearchParams(window.location.search);
       const params = {};
@@ -450,6 +456,7 @@ export default {
                                     id
                                     russian
                                 }
+                                videos { playerUrl }
                                 airedOn {
                                     year
                                 }

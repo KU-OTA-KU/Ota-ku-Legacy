@@ -38,7 +38,7 @@
                 aspect-ratio="0.7"
                 cover
                 :lazy-src="animeList.poster.miniUrl"
-                :src="animeList.poster.mainUrl"
+                :src="animeList.poster.main2xUrl"
             >
             </v-img>
           </div>
@@ -70,7 +70,7 @@
           <v-card rounded="lg" variant="text">
             <v-card-title class="pa-0">Кадры</v-card-title>
             <v-card-subtitle class="pa-0">Топ кадры из аниме</v-card-subtitle>
-            <v-slide-group center-active>
+            <v-slide-group class="slide-group-gallery">
               <v-slide-group-item
                   v-for="(image, index) in screenshots">
                 <v-img
@@ -155,7 +155,7 @@ import axios from 'axios';
 import {cleanDescription} from "@/ts/cleanDescription";
 import {formatDate} from "@/ts/formatDate";
 import moment from 'moment-timezone';
-import {openAnime} from "@/ts/goTo.ts";
+import {openAnime} from "@/ts/goTo";
 
 export default {
   mounted() {
@@ -210,7 +210,7 @@ export default {
                             nextEpisodeAt
                             genres { id russian }
                             studios { id name }
-                            poster { originalUrl miniUrl mainUrl}
+                            poster { originalUrl miniUrl mainUrl main2xUrl}
                             screenshots { id x332Url }
                             related { id anime { id russian poster { main2xUrl } } relationRu }
                           }
@@ -250,7 +250,7 @@ export default {
 }
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 .loader
   width: 40px
   padding: 6px
@@ -292,4 +292,21 @@ export default {
 
   .name-and-other-anime-information
     width: 100% !important
+
+
+.slide-group-gallery
+  position: relative
+  overflow: hidden
+
+  .v-slide-group__prev,
+  .v-slide-group__next
+    position: absolute
+    z-index: 2
+    height: 100%
+
+  .v-slide-group__next
+    right: 0
+
+  .v-slide-group__prev
+    left: 0
 </style>
