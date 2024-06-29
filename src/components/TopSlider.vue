@@ -1,6 +1,6 @@
 <template>
   <v-container class="d-flex"
-               style="max-width: var(--ota-ku-max-width); padding: 20px 10px 10px 10px; align-items: center">
+               style="max-width: var(--ota-ku-max-width); padding: 20px 10px 0 10px; align-items: center">
     <v-carousel
         v-if="animeList.length > 0"
         hide-delimiter-background

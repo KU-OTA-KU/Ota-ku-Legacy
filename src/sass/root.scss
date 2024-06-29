@@ -49,3 +49,20 @@ body {
         color: white;
     }
 }
+
+
+// custom sizes for vuetify
+.ota-anime-containers {
+    .ota-anime-containers-v-title {
+        font-size: 1.4em !important;
+        font-weight: bold !important;
+        font-family: 'Inter', sans-serif !important;
+    }
+
+    .ota-anime-containers-v-subtitle {
+        font-size: 0.9em !important;
+        white-space: normal;
+    }
+}
+
+

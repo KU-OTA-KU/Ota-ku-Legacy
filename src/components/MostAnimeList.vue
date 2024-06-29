@@ -2,43 +2,35 @@
   <v-container class="most-anime-container"
                style="max-width: var(--ota-ku-max-width); padding: 20px 10px 10px 10px; align-items: center;">
     <div v-if="mostAnimeListSkeleton">
-      <v-card variant="text" class="pa-0" v-for="n in 2" :key="n">
+      <v-card variant="text" class="pa-0" v-for="n in 10" :key="n">
         <v-skeleton-loader
             class="mb-3"
             type="list-item-two-line"
         >
         </v-skeleton-loader>
-        <v-row no-gutters class="mt-1">
-          <v-col v-for="n in 6" :key="n" cols="6" xxl="2" xl="2" lg="2" md="3" sm="4" xs="4" class="pa-2">
-            <v-skeleton-loader
-                class="mb-5 custom-skeleton-1"
-                type="image, list-item-two-line"
-            ></v-skeleton-loader>
-          </v-col>
-        </v-row>
       </v-card>
     </div>
     <div v-else>
-      <div v-for="category in animeList" :key="category.title" class="mb-5">
-        <v-card variant="text" class="pa-0">
-          <v-card-title class="pa-0">{{ category.title }}</v-card-title>
-          <v-card-subtitle class="pa-0">{{ category.description }}</v-card-subtitle>
+      <div v-for="category in animeList" :key="category.title" class="">
+        <v-card variant="text" class="ota-anime-containers pa-0">
+          <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between mb-1">{{ category.title }}<v-btn size="small" rounded="xl" color="white">Больше</v-btn></v-card-title>
+          <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">{{ category.description }}</v-card-subtitle>
           <v-row no-gutters class="mt-1">
-            <v-col v-for="anime in category.anime" :key="anime.id" cols="6" xxl="2" xl="2" lg="2" md="3"
-                   sm="4" xs="4" class="pa-2">
+            <v-col v-for="anime in category.anime" :key="anime.id" cols="4" xxl="2" xl="2" lg="2" md="2"
+                   sm="3" xs="4" class="pa-xxl-2 pa-xl-2 pa-lg-2 pa-md-1 pa-sm-1 pa-1">
               <v-card variant="text" link rounded="lg" @click="openDialog(anime)">
                 <v-img :lazy-src="anime.poster.miniUrl" :src="anime.poster.mainUrl"
                        :alt="anime.name"
                        rounded="lg" aspect-ratio="0.7" cover
                        style="pointer-events: none; user-select: none;"></v-img>
-                <v-card-title class="pa-1 font-weight-regular" style="font-size: 1em;">{{
+                <v-card-title class="font-weight-regular pa-0" style="font-size: 1em;">{{
                     anime.russian
                   }}
                 </v-card-title>
-                <v-card-subtitle class="pa-1 d-flex ga-1 pt-0 pb-3" style="font-size: 0.8em">
+                <v-card-subtitle class="pa-0 d-flex ga-1 pt-0 pb-3" style="font-size: 0.8em">
                   Тип: {{ anime.kind }}
                   <span>•</span>
-                  Оценка: {{ anime.score }}
+                  {{ anime.score }} <v-icon class=""></v-icon>
                 </v-card-subtitle>
               </v-card>
             </v-col>
@@ -65,21 +57,22 @@ export default defineComponent({
   },
   data() {
     return {
+      animeLimit: 12,
       animeList: [],
       selectedAnime: {},
       mostAnimeListSkeleton: ref(true),
     };
   },
   mounted() {
-    this.fetchAllData(6);
+    this.fetchAllData();
   },
   methods: {
-    async fetchAllData(animeLimit: number) {
+    async fetchAllData() {
       try {
         const response = await axios.post("https://shikimori.one/api/graphql", {
           query: `
               query {
-                ongoingAnime: animes(limit: 6, order: popularity, status: "ongoing", kind: "tv") {
+                ongoingAnime: animes(season: "2023_2024", limit: ${this.animeLimit}, order: popularity, status: "ongoing", kind: "tv") {
                   id
                   russian
                   kind
@@ -95,7 +88,7 @@ export default defineComponent({
                     year
                   }
                 }
-                anonseAnime: animes(season: "2024", limit: ${animeLimit}, order: name, status: "anons", kind: "tv") {
+                anonseAnime: animes(season: "2024", limit: ${this.animeLimit}, order: name, status: "anons", kind: "tv") {
                   id
                   russian
                   kind
@@ -111,7 +104,7 @@ export default defineComponent({
                     year
                   }
                 }
-                topAnime: animes(limit: ${animeLimit}, order: ranked, status: "released", kind: "tv") {
+                topAnime: animes(limit: ${this.animeLimit}, order: ranked, status: "released", kind: "tv") {
                   id
                   russian
                   kind
@@ -127,7 +120,7 @@ export default defineComponent({
                     year
                   }
                 }
-                releasedAnime: animes(limit: ${animeLimit}, order: popularity, status: "released", kind: "tv") {
+                releasedAnime: animes(limit: ${this.animeLimit}, order: popularity, status: "released", kind: "tv") {
                   id
                   russian
                   kind
@@ -143,7 +136,7 @@ export default defineComponent({
                     year
                   }
                 }
-                filmsAnime: animes(season: "2020_2024", limit: ${animeLimit}, order: popularity, status: "released", kind: "movie") {
+                filmsAnime: animes(season: "2020_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "movie") {
                   id
                   russian
                   kind
@@ -159,7 +152,7 @@ export default defineComponent({
                     year
                   }
                 }
-                ovaAnime: animes(season: "2023_2024", limit: ${animeLimit}, order: popularity, status: "released", kind: "ova") {
+                ovaAnime: animes(season: "2022_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "ova") {
                   id
                   russian
                   kind
@@ -175,7 +168,7 @@ export default defineComponent({
                     year
                   }
                 }
-                onaAnime: animes(season: "2023_2024", limit: ${animeLimit}, order: popularity, status: "released", kind: "ona") {
+                onaAnime: animes(season: "2022_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "ona") {
                   id
                   russian
                   kind
@@ -212,32 +205,32 @@ export default defineComponent({
         });
         this.animeList.push({
           title: "Популярные ONA",
-          description: "оригинальные анимационные сети (ONA) с уникальными и захватывающими сюжетами!",
+          description: "ONA с уникальными и захватывающими сюжетами!",
           anime: data.data.onaAnime,
         });
         this.animeList.push({
           title: "Топ аниме",
-          description: "Погружайся в лучшие произведения аниме, отмеченные высшим призом!",
+          description: "Погружайся в лучшие произведения аниме!",
           anime: data.data.topAnime,
         });
         this.animeList.push({
           title: "Популярные OVA",
-          description: "(Original Video Animation) — эксклюзивные анимационные произведения!",
+          description: "Эксклюзивные анимационные произведения!",
           anime: data.data.ovaAnime,
         });
         this.animeList.push({
           title: "Анонсы",
-          description: "Узнавай первым о предстоящих релизах, которые ожидают нас!",
+          description: "Узнавай первым о предстоящих релизах!",
           anime: data.data.anonseAnime,
         });
         this.animeList.push({
           title: "Завершенные",
-          description: "Проведи время в компании классических аниме, наполненных волнением!",
+          description: "Проведи время в компании классических аниме!",
           anime: data.data.releasedAnime,
         });
         this.animeList.push({
           title: "Фильмы",
-          description: "Эксклюзивная коллекция анимационных фильмов для наслаждения!",
+          description: "Эксклюзивная коллекция фильмов для наслаждения!",
           anime: data.data.filmsAnime,
         });
 
