@@ -63,6 +63,7 @@
           </v-card>
         </v-container>
       </section>
+      <banner :blockId="'R-A-7609325-1'" :renderTo="'yandex_rtb_R-A-7609325-1'"></banner>
       <!-- Gallery -->
       <section>
         <v-container
@@ -156,8 +157,12 @@ import {cleanDescription} from "@/ts/cleanDescription";
 import {formatDate} from "@/ts/formatDate";
 import moment from 'moment-timezone';
 import {openAnime} from "@/ts/goTo";
+import Banner from "@/components/others/Banner.vue";
 
 export default {
+  components: {
+    Banner,
+  },
   mounted() {
     const animeId = this.$route.query.animeId;
     this.locale = moment.tz.guess();
