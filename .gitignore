@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 
-
+android
+ios
 # local env files
 .env.local
 .env.*.local

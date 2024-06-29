@@ -3,7 +3,7 @@
     <v-card-title class="pa-0">Каталог релизов</v-card-title>
     <v-card-subtitle class="pa-0">Самые новые и свежие эпизоды в каталоге</v-card-subtitle>
     <v-row no-gutters class="mt-4 flex-nowrap">
-      <v-form @submit.prevent="submitForm" action="#" method="GET" class="w-100">
+      <v-form @submit.prevent="submitForm" class="w-100">
         <v-text-field label="Что будем искать в мире аниме?" variant="solo-filled" hide-details density="comfortable" autocomplete="off"
                       v-model="searchQuery" ></v-text-field>
       </v-form>
@@ -391,7 +391,7 @@ export default {
       window.scrollTo({top: 0});
     },
     submitForm() {
-      window.location.href = `/catalog?search=${encodeURIComponent(this.searchQuery)}`;
+      this.$router.push(`/catalog?search=${encodeURIComponent(this.searchQuery)}`);
     },
     getUrlParams() {
       const searchParams = new URLSearchParams(window.location.search);
