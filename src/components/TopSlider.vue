@@ -29,7 +29,7 @@
         <v-card class="pa-2 d-flex flex-column justify-center top-slider-anime-card" hover color="" link
                 :ripple="false">
           <v-card-title class="fill-height align-end text-wrap" v-text="anime.russian"
-                        style="font-size: 1.9em; font-weight: 600;"></v-card-title>
+                        style="font-size: 2.5em; font-weight: 600; font-family: 'Kashima', sans-serif; letter-spacing: 8px; line-height: 100%;"></v-card-title>
           <v-card-subtitle class="pt-0">Оценка {{ anime.score }}</v-card-subtitle>
           <v-card-text class="top-slider-anime-cart-text">
             <p> {{ cleanDescription(anime.description) }}</p>

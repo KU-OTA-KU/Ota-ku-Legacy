@@ -68,9 +68,9 @@
       <section>
         <v-container
             style="max-width: var(--ota-ku-max-width); padding: 10px 10px 10px 10px; align-items: center;">
-          <v-card rounded="lg" variant="text">
-            <v-card-title class="pa-0">Кадры</v-card-title>
-            <v-card-subtitle class="pa-0">Топ кадры из аниме</v-card-subtitle>
+          <v-card rounded="lg" variant="text" class="ota-anime-containers">
+            <v-card-title class="ota-anime-containers-v-title pa-0">Кадры</v-card-title>
+            <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">Топ кадры из аниме</v-card-subtitle>
             <v-slide-group class="slide-group-gallery">
               <v-slide-group-item
                   v-for="(image, index) in screenshots">
@@ -105,9 +105,9 @@
       <section>
         <v-container
             style="max-width: var(--ota-ku-max-width); padding: 0 10px 10px 10px; align-items: center;">
-          <v-card variant="text" rounded="lg">
-            <v-card-title class="pa-0">Похожые релизы</v-card-title>
-            <v-card-subtitle class="pa-0">Аниме и фильмы связеные с франшизой</v-card-subtitle>
+          <v-card variant="text" rounded="lg" class="ota-anime-containers">
+            <v-card-title class="ota-anime-containers-v-title pa-0">Похожые релизы</v-card-title>
+            <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">Аниме и фильмы связеные с франшизой</v-card-subtitle>
             <v-row no-gutters>
               <v-col v-if="relatedAnime.length === 0" v-for="n in 4" cols="6" xxl="3" xl="3" lg="3" md="4" sm="4" xs="5"
                      class="pa-2">

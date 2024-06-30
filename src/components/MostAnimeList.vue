@@ -13,7 +13,7 @@
     <div v-else>
       <div v-for="category in animeList" :key="category.title" class="">
         <v-card variant="text" class="ota-anime-containers pa-0">
-          <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between mb-1">{{ category.title }}<v-btn size="small" rounded="xl" color="white">Больше</v-btn></v-card-title>
+          <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between align-center">{{ category.title }}<v-btn size="small" rounded="xl" color="white">Больше</v-btn></v-card-title>
           <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">{{ category.description }}</v-card-subtitle>
           <v-row no-gutters class="mt-1">
             <v-col v-for="anime in category.anime" :key="anime.id" cols="4" xxl="2" xl="2" lg="2" md="2"
