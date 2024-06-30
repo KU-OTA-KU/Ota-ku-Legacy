@@ -1,27 +1,27 @@
 <template>
   <v-layout style="height: 65px;" class="header-navigation">
-    <v-app-bar tag="header" color="black" scroll-behavior="elevate hide" density="default">
+    <v-app-bar tag="header" color="black" scroll-behavior="elevate hide" height="65">
       <v-container class="d-flex" style="max-width: var(--ota-ku-max-width); padding: 0; align-items: center">
         <v-col align-self="center" class="d-flex">
-          <v-toolbar-title style="max-width: 110px; margin-right: 20px" @click="navigateToHome"
+          <v-toolbar-title style="max-width: 130px; min-width: 130px; margin-right: 20px" @click="navigateToHome"
                            class="cursor-pointer">
             <v-img class="ota-ku-ru-icon user-select-none"
-                   src="/img/ota-ku.png"
-                   width="110px"
+                   src="/img/ota-ku-kashima.png"
+                   width="100%"
                    alt="Logo"
             ></v-img>
           </v-toolbar-title>
-          <v-toolbar-items class="header-toolbar-items ga-2">
+          <v-toolbar-items class="header-toolbar-items ga-2 align-center d-flex">
             <v-btn :variant="getButtonVariant('/catalog')" class="text-capitalize" active to="/catalog"
-                   rounded="lg" size="small" height="30px" theme="customDarkTheme">
+                   rounded="lg" size="small" theme="customDarkTheme" height="30">
               Каталог
             </v-btn>
             <v-btn :variant="getButtonVariant('/releases')" class="text-capitalize" active to="/releases"
-                   rounded="lg" size="small" disabled height="30px" theme="customDarkTheme">
+                   rounded="lg" size="small" disabled theme="customDarkTheme" height="30">
               Релизы
             </v-btn>
             <v-btn :variant="getButtonVariant('/schedule')" class="text-capitalize" active to="/schedule"
-                   rounded="lg" size="small" disabled height="30px" theme="customDarkTheme">
+                   rounded="lg" size="small" disabled theme="customDarkTheme" height="30">
               Расписание
             </v-btn>
           </v-toolbar-items>
@@ -88,8 +88,8 @@ export default {
 
 @media screen and (max-width: 768px)
   .header-toolbar-items
-    display: none
+    display: none !important
 
   .bottom-navigation
-    display: block
+    display: block !important
 </style>
