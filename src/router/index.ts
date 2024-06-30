@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import IndexView from "@/views/IndexView.vue";
 import CatalogView from "@/views/CatalogView.vue";
 import OpenAnimeView from "@/views/OpenAnimeView.vue";
@@ -51,8 +51,8 @@ const routes: Array<RouteRecordRaw> = [
 //     import(/* webpackChunkName: "catalog" */ "../views/AnimeCatalog.vue"),
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
-  // history: createWebHistory(process.env.BASE_URL),
+  // history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
 });
 

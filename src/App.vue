@@ -22,7 +22,7 @@ export default defineComponent({
           console.log('routeChanged:', to.fullPath);
           setTimeout(function compileToFunction() {
             window.scrollTo({top: 0});
-          },1)
+          },2)
         }
     );
 
