@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import IndexView from "@/views/IndexView.vue";
 import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
+import '@/css/nprogress.css';
 
 const routes: Array<RouteRecordRaw> = [
   {
