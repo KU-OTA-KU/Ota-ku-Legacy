@@ -57,7 +57,7 @@ export default defineComponent({
   },
   data() {
     return {
-      animeLimit: 12,
+      animeLimit: 6,
       animeList: [],
       selectedAnime: {},
       mostAnimeListSkeleton: ref(true),
