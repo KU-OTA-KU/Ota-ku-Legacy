@@ -1,7 +1,7 @@
 <template>
   <v-layout style="height: 65px;" class="header-navigation">
     <v-app-bar tag="header" color="black" scroll-behavior="elevate hide" height="65">
-      <v-container class="d-flex" style="max-width: var(--ota-ku-max-width); padding: 0; align-items: center">
+      <v-container class="d-flex pa-0" style="max-width: var(--ota-ku-max-width)">
         <v-col align-self="center" class="d-flex">
           <v-toolbar-title style="max-width: 130px; min-width: 130px; margin-right: 20px" @click="navigateToHome"
                            class="cursor-pointer">
@@ -30,7 +30,7 @@
         <v-col class="d-flex justify-end ga-1">
           <v-tooltip text="Случайное аниме" location="start">
             <template v-slot:activator="{ props }">
-              <v-btn theme="customDarkTheme" v-bind="props" icon="mdi-dice-multiple" variant="text" disabled></v-btn>
+              <v-btn theme="customDarkTheme" v-bind="props" icon="mdi-dice-multiple" variant="text" @click="this.$router.push('anime?animeId=' + Math.floor(Math.random() * 1000))"></v-btn>
             </template>
           </v-tooltip>
           <v-tooltip text="Поиск аниме" location="bottom">

@@ -13,7 +13,7 @@
     <div v-else>
       <div v-for="category in animeList" :key="category.title" class="">
         <v-card variant="text" class="ota-anime-containers pa-0">
-          <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between align-center">{{ category.title }}<v-btn size="small" rounded="xl" color="white">Больше</v-btn></v-card-title>
+          <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between align-center">{{ category.title }}<v-btn size="small" rounded="xl" color="white" @click="this.$router.push(`catalog?${category.moreLink}`)">Больше</v-btn></v-card-title>
           <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">{{ category.description }}</v-card-subtitle>
           <v-row no-gutters class="mt-1">
             <v-col v-for="anime in category.anime" :key="anime.id" cols="4" xxl="2" xl="2" lg="2" md="2"
@@ -202,36 +202,43 @@ export default defineComponent({
           title: "Онгоинги",
           description: "Вступай в новые эпизоды приключений, следи за сюжетом!",
           anime: data.data.ongoingAnime,
+          moreLink: 'status=ongoing&order=popularity',
         });
         this.animeList.push({
           title: "Популярные ONA",
           description: "ONA с уникальными и захватывающими сюжетами!",
           anime: data.data.onaAnime,
+          moreLink: 'kind=ona&order=popularity',
         });
         this.animeList.push({
           title: "Топ аниме",
           description: "Погружайся в лучшие произведения аниме!",
           anime: data.data.topAnime,
+          moreLink: 'kind=tv&order=popularity',
         });
         this.animeList.push({
           title: "Популярные OVA",
           description: "Эксклюзивные анимационные произведения!",
           anime: data.data.ovaAnime,
+          moreLink: 'kind=ova&order=popularity',
         });
         this.animeList.push({
           title: "Анонсы",
           description: "Узнавай первым о предстоящих релизах!",
           anime: data.data.anonseAnime,
+          moreLink: 'status=anons&order=popularity',
         });
         this.animeList.push({
           title: "Завершенные",
           description: "Проведи время в компании классических аниме!",
           anime: data.data.releasedAnime,
+          moreLink: 'released=anons&order=popularity',
         });
         this.animeList.push({
           title: "Фильмы",
           description: "Эксклюзивная коллекция фильмов для наслаждения!",
           anime: data.data.filmsAnime,
+          moreLink: 'kind=movie&released=anons&order=popularity',
         });
 
         this.mostAnimeListSkeleton = false;

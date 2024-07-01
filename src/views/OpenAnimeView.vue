@@ -64,43 +64,8 @@
         </v-container>
       </section>
       <banner :blockId="'R-A-7609325-1'" :renderTo="'yandex_rtb_R-A-7609325-1'"></banner>
-      <!-- Gallery -->
-      <section>
-        <v-container
-            style="max-width: var(--ota-ku-max-width); padding: 10px 10px 10px 10px; align-items: center;">
-          <v-card rounded="lg" variant="text" class="ota-anime-containers">
-            <v-card-title class="ota-anime-containers-v-title pa-0">Кадры</v-card-title>
-            <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">Топ кадры из аниме</v-card-subtitle>
-            <v-slide-group class="slide-group-gallery">
-              <v-slide-group-item
-                  v-for="(image, index) in screenshots">
-                <v-img
-                    width="250"
-                    aspect-ratio="1.6"
-                    rounded="lg"
-                    cover
-                    class="ma-1 ma-xs-1 ma-sm-1 ma-md-2 ma-lg-2 ma-xl-2 ma-xxl-2"
-                    :lazy-src="image"
-                    :src="image"
-                >
-                </v-img>
-              </v-slide-group-item>
-            </v-slide-group>
-          </v-card>
-        </v-container>
-      </section>
-      <!-- player solo -->
-      <section>
-        <v-container
-            style="max-width: var(--ota-ku-max-width); padding: 0 10px 10px 10px; align-items: center;">
-          <div style="width: 100%;  aspect-ratio: 177 / 100;">
-            <iframe
-                :src="'//kodik.cc/find-player?shikimoriID=' + currentAnime + '&prioritizeTranslations=[' + currentAnimeVoice + ']&blockInCountries=turkey,azerbadjan&types=anime,anime-serial'"
-                width="100%" height="100%" frameborder="0" allowfullscreen
-                allow="autoplay *; fullscreen *"></iframe>
-          </div>
-        </v-container>
-      </section>
+      <open-anime-gallery :screenshots="this.screenshots"></open-anime-gallery>
+      <open-anime-player :currentAnime="this.currentAnime"></open-anime-player>
       <!-- most anime List-->
       <section>
         <v-container
@@ -158,10 +123,13 @@ import {formatDate} from "@/ts/formatDate";
 import moment from 'moment-timezone';
 import {openAnime} from "@/ts/goTo";
 import Banner from "@/components/others/Banner.vue";
-
+import OpenAnimeGallery from "@/components/OpenAnimeGallery.vue";
+import OpenAnimePlayer from "@/components/OpenAnimePlayer.vue";
 export default {
   components: {
     Banner,
+    OpenAnimeGallery,
+    OpenAnimePlayer,
   },
   mounted() {
     const animeId = this.$route.query.animeId;
@@ -187,7 +155,6 @@ export default {
     return {
       animeList: null,
       currentAnime: '',
-      currentAnimeVoice: '',
       genres: [],
       studios: [],
       screenshots: [],
