@@ -13,7 +13,7 @@
                 aspect-ratio="1.6"
                 rounded="lg"
                 cover
-                class="ma-1 ma-xs-1 ma-sm-1 ma-md-2 ma-lg-2 ma-xl-2 ma-xxl-2"
+                class="ma-xxl-2 ma-xl-2 ma-lg-2 ma-md-1 ma-sm-1 ma-1"
                 :lazy-src="image"
                 :src="image"
             >
