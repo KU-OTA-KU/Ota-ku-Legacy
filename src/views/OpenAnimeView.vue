@@ -64,8 +64,8 @@
         </v-container>
       </section>
       <banner :blockId="'R-A-7609325-1'" :renderTo="'yandex_rtb_R-A-7609325-1'"></banner>
-      <open-anime-gallery :screenshots="this.screenshots"></open-anime-gallery>
-      <open-anime-player :currentAnime="this.currentAnime"></open-anime-player>
+      <open-anime-gallery :screenshots="this.screenshots" v-if="this.screenshots.length !== 0"></open-anime-gallery>
+      <open-anime-player :currentAnime="this.currentAnime" v-if="this.currentAnime"></open-anime-player>
       <!-- most anime List-->
       <section>
         <v-container
