@@ -407,7 +407,6 @@ export default {
       return params;
     },
     loadNextPage() {
-      console.log(this.currPage)
       if (this.isNearBottom()) {
         this.fetchAnimeData();
       }
