@@ -1,7 +1,7 @@
 <template>
   <v-container class="most-anime-container"
                style="max-width: var(--ota-ku-max-width); padding: 20px 10px 10px 10px; align-items: center;">
-    <div v-if="mostAnimeListSkeleton">
+    <div v-if="mostAnimeList.length === 0">
       <v-card variant="text" class="pa-0" v-for="n in 10" :key="n">
         <v-skeleton-loader
             class="mb-3"
@@ -11,7 +11,7 @@
       </v-card>
     </div>
     <div v-else>
-      <div v-for="category in animeList" :key="category.title" class="">
+      <div v-for="category in mostAnimeList" :key="category.title" class="">
         <v-card variant="text" class="ota-anime-containers pa-0">
           <v-card-title class="ota-anime-containers-v-title pa-0 d-flex justify-space-between align-center">{{ category.title }}<v-btn size="small" rounded="xl" color="white" @click="this.$router.push(`catalog?${category.moreLink}`)">Больше</v-btn></v-card-title>
           <v-card-subtitle class="ota-anime-containers-v-subtitle pa-0">{{ category.description }}</v-card-subtitle>
@@ -47,8 +47,7 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
-import {defineComponent, ref} from "vue";
+import { defineComponent, ref, computed } from "vue";
 import AnimeDialog from "@/components/others/AnimeDialog.vue";
 
 export default defineComponent({
@@ -57,197 +56,22 @@ export default defineComponent({
   },
   data() {
     return {
-      animeLimit: 6,
-      animeList: [],
       selectedAnime: {},
-      mostAnimeListSkeleton: ref(true),
     };
   },
+  computed: {
+    mostAnimeList() {
+      return this.$store.getters['mostAnime/getMostAnimeList']
+    },
+  },
   mounted() {
-    this.fetchAllData();
+    this.getAllData();
   },
   methods: {
-    async fetchAllData() {
-      try {
-        const response = await axios.post("https://shikimori.one/api/graphql", {
-          query: `
-              query {
-                ongoingAnime: animes(season: "2023_2024", limit: ${this.animeLimit}, order: popularity, status: "ongoing", kind: "tv") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                anonseAnime: animes(season: "2024", limit: ${this.animeLimit}, order: name, status: "anons", kind: "tv") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                topAnime: animes(limit: ${this.animeLimit}, order: ranked, status: "released", kind: "tv") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                releasedAnime: animes(limit: ${this.animeLimit}, order: popularity, status: "released", kind: "tv") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                filmsAnime: animes(season: "2020_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "movie") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                ovaAnime: animes(season: "2022_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "ova") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-                onaAnime: animes(season: "2022_2024", limit: ${this.animeLimit}, order: popularity, status: "released", kind: "ona") {
-                  id
-                  russian
-                  kind
-                  score
-                  description
-                  videos { playerUrl }
-                  poster {
-                    miniUrl
-                    mainUrl
-                    originalUrl
-                  }
-                  airedOn {
-                    year
-                  }
-                }
-              }
-            `,
-        }, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-
-        if (response.status !== 200) {
-          this.$router.push(`/error`);
-        }
-
-        const data = response.data;
-        this.animeList.push({
-          title: "Онгоинги",
-          description: "Вступай в новые эпизоды приключений, следи за сюжетом!",
-          anime: data.data.ongoingAnime,
-          moreLink: 'status=ongoing&order=popularity',
-        });
-        this.animeList.push({
-          title: "Популярные ONA",
-          description: "ONA с уникальными и захватывающими сюжетами!",
-          anime: data.data.onaAnime,
-          moreLink: 'kind=ona&order=popularity',
-        });
-        this.animeList.push({
-          title: "Топ аниме",
-          description: "Погружайся в лучшие произведения аниме!",
-          anime: data.data.topAnime,
-          moreLink: 'kind=tv&order=popularity',
-        });
-        this.animeList.push({
-          title: "Популярные OVA",
-          description: "Эксклюзивные анимационные произведения!",
-          anime: data.data.ovaAnime,
-          moreLink: 'kind=ova&order=popularity',
-        });
-        this.animeList.push({
-          title: "Анонсы",
-          description: "Узнавай первым о предстоящих релизах!",
-          anime: data.data.anonseAnime,
-          moreLink: 'status=anons&order=popularity',
-        });
-        this.animeList.push({
-          title: "Завершенные",
-          description: "Проведи время в компании классических аниме!",
-          anime: data.data.releasedAnime,
-          moreLink: 'released=anons&order=popularity',
-        });
-        this.animeList.push({
-          title: "Фильмы",
-          description: "Эксклюзивная коллекция фильмов для наслаждения!",
-          anime: data.data.filmsAnime,
-          moreLink: 'kind=movie&released=anons&order=popularity',
-        });
-
-        this.mostAnimeListSkeleton = false;
-      } catch (error) {
-        console.log(error);
-
-      }
+    async getAllData() {
+      await this.$store.dispatch('mostAnime/getMostAnimeList');
     },
-    openDialog(anime) {
+    openDialog(anime: number) {
       this.selectedAnime = anime;
       this.$refs.animeDialogRef.openDialog();
     }

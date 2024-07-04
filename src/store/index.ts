@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
-
+import mostAnime from "./modules/mostAnime";
+import topSlider from "./modules/topSlider";
 export default createStore({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+  modules: {
+    mostAnime,
+    topSlider,
+  },
 });

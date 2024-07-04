@@ -1,8 +1,15 @@
 <template>
   <v-container class="d-flex"
                style="max-width: var(--ota-ku-max-width); padding: 20px 10px 0 10px; align-items: center">
+    <v-skeleton-loader
+        v-if="topSliderAnimeList.length === 0"
+        type="list-item-three-line, list-item-three-line, list-item-three-line, list-item-three-line"
+        width="100%"
+        style="border-radius: 20px; height: var(--top-slider-height);"
+    >
+    </v-skeleton-loader>
     <v-carousel
-        v-if="animeList.length > 0"
+        v-else
         hide-delimiter-background
         cycle
         model-value="1"
@@ -11,7 +18,7 @@
         style="border-radius: 20px; height: var(--top-slider-height);"
     >
       <v-carousel-item
-          v-for="anime in animeList"
+          v-for="anime in topSliderAnimeList"
           :key="anime.id"
           cover
           link
@@ -43,18 +50,10 @@
         </v-card>
       </v-carousel-item>
     </v-carousel>
-    <v-skeleton-loader
-        v-else
-        type="list-item-three-line, list-item-three-line, list-item-three-line, list-item-three-line"
-        width="100%"
-        style="border-radius: 20px; height: var(--top-slider-height);"
-    >
-    </v-skeleton-loader>
   </v-container>
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import {cleanDescription} from "@/ts/cleanDescription.ts";
 import {openAnime} from "@/ts/goTo.ts";
 
@@ -63,50 +62,28 @@ export default {
 
   data() {
     return {
-      animeList: [],
       cleanDescription,
       loading: false,
       openAnime,
     };
   },
+  computed: {
+    topSliderAnimeList() {
+      return this.$store.getters['topSlider/getTopSliderAnimeLIst']
+    },
+  },
   mounted() {
-    this.fetchAnimeList(5);
+    this.getAllData();
   },
   methods: {
-    async fetchAnimeList(limit: number) {
-      try {
-        const response = await axios.post("https://shikimori.one/api/graphql", {
-          query: `
-            query {
-                animes(season: "2023_2024", limit: ${limit}, order: popularity, status: "released", kind: "tv") {
-                    id
-                    name
-                    russian
-                    score
-                    poster {
-                        originalUrl
-                        miniUrl
-                    }
-                    description
-                }
-            }
-          `
-        }, {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          }
-        });
-        this.animeList = response.data.data.animes;
-      } catch (error) {
-        this.$router.push('/error');
-      }
+    async getAllData() {
+      await this.$store.dispatch('topSlider/getTopSliderAnimeLIst');
+      console.log(this.topSliderAnimeList)
     },
   },
 };
 </script>
-<style lang="sass" scoped>
-
+<style scoped lang="sass">
 .top-slider-anime-card
   background: linear-gradient(90deg, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 1) 52%, rgba(10, 10, 10, 0.4) 100%)
   min-height: var(--top-slider-height)
