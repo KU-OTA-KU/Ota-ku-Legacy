@@ -4,7 +4,7 @@ export function goToAnime(animeId: string): void {
 
 export function openAnime(animeId: number) {
     this.loading = true;
-    setTimeout(() => (this.loading = false), 1000)
+    setTimeout(() => (this.loading = false), 2000)
     setTimeout(() => (this.$router.push(`/anime?animeId=${animeId}`)), 600)
 }
 
