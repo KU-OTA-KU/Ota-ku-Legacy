@@ -7,11 +7,11 @@
         <v-text-field label="Что будем искать в мире аниме?" variant="solo-filled" hide-details density="comfortable" autocomplete="off"
                       v-model="searchQuery" ></v-text-field>
       </v-form>
-      <v-btn :icon="sidebarVisible ? 'mdi-close' : 'mdi-filter'" rounded="" class="ml-4" variant="tonal"
+      <v-btn :icon="sidebarVisible ? 'mdi-close' : 'mdi-filter'" rounded="" class="ml-2" variant="tonal"
              density="default" @click="toggleSidebar">
       </v-btn>
     </v-row>
-    <v-row no-gutters class="mt-4 d-flex ga-4 flex-row flex-nowrap catalog-container">
+    <v-row no-gutters class="mt-2 d-flex ga-2 flex-row flex-nowrap catalog-container">
       <v-card max-width="100%" width="100%" rounded="lg">
         <v-list >
           <div v-if="animeCatalogListSkeleton">
@@ -77,7 +77,7 @@
       </v-card>
       <v-card v-show="sidebarVisible" width="100%" class="sidebar" rounded="lg" height="100%"
               position="relative" style="background-color: transparent">
-        <div class="content-wrapper d-flex flex-column ga-5 pb-5">
+        <div class="content-wrapper d-flex flex-column ga-2 pb-2">
           <v-form class="contents pt-2 position-relative"
                   style="height: 100%; background-color: #212121; border-radius: 6px">
             <v-card variant="text" class="anime-filter-content-v-card pl-4 pr-4" width="100%">
@@ -135,8 +135,8 @@
                         label="Выбирите Оценку"></v-select>
             </v-card>
           </v-form>
-          <div class="submit-filter">
-            <div class="submit-filter-inner-container pa-4 d-flex ga-4"
+          <div class="submit-filter ">
+            <div class="submit-filter-inner-container pa-4 d-flex ga-2"
                  style="background-color: #212121; border-radius: 6px;">
               <v-btn theme="customDarkTheme" variant="flat" prepend-icon="mdi-check-all">
                 Поиск
@@ -488,26 +488,6 @@ export default {
         }
       }
     },
-    // filterAnimeList: debounce(function (searchQuery: string) {
-    //   if (searchQuery !== '') {
-    //     this.fetchAnimeData(this.page, 10, 'name', '', searchQuery);
-    //   } else {
-    //     this.fetchAnimeData(this.page, 10, 'popularity', "released", "");
-    //   }
-    //
-    // }, 1000),
-    // loadMoreItems() {
-    //   if (this.finished || this.loading) {
-    //     return;
-    //   }
-    //   console.log("sinswdopw")
-    //   this.loading = true;
-    //   this.page += 1;
-    //   this.fetchAllData(this.page, 10, 'popularity', "released", "");
-    // },
-    // shouldLoadMore() {
-    //   return !this.finished && !this.loading;
-    // },
   },
 };
 </script>

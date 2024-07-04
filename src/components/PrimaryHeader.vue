@@ -1,6 +1,6 @@
 <template>
   <v-layout style="height: 65px;" class="header-navigation">
-    <v-app-bar tag="header" color="black" scroll-behavior="elevate hide" height="65">
+    <v-app-bar tag="header" color="black" scroll-behavior="elevate" height="65">
       <v-container class="d-flex pa-0" style="max-width: var(--ota-ku-max-width)">
         <v-col align-self="center" class="d-flex">
           <v-toolbar-title style="max-width: 130px; min-width: 130px; margin-right: 20px" @click="navigateToHome"
