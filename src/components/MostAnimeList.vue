@@ -19,7 +19,7 @@
             <v-col v-for="anime in category.anime" :key="anime.id" cols="4" xxl="2" xl="2" lg="2" md="2"
                    sm="3" xs="4" class="most-anime-container-item pa-xxl-2 pa-xl-2 pa-lg-2 pa-md-1 pa-sm-1 pa-1">
               <v-card variant="text" link rounded="lg" @click="openDialog(anime)">
-                <v-img :lazy-src="anime.poster.miniUrl" :src="anime.poster.mainUrl"
+                <v-img :lazy-src="anime.poster.mainUrl" :src="anime.poster.mainUrl"
                        :alt="anime.name"
                        rounded="lg" aspect-ratio="0.7" cover
                        style="pointer-events: none; user-select: none;"></v-img>
