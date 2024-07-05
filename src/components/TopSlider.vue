@@ -25,9 +25,9 @@
       >
         <v-img
             class="top-slider-anime-image"
-            :lazy-src="anime.poster.miniUrl"
+            :lazy-src="anime.poster.originalUrl"
             :src="anime.poster.originalUrl"
-            :alt="anime.name"
+            :alt="anime.russian"
             cover
             style="position: absolute; right: 0;"
         >
@@ -35,8 +35,8 @@
         </v-img>
         <v-card class="pa-2 d-flex flex-column justify-center top-slider-anime-card" hover color="" link
                 :ripple="false">
-          <v-card-title class="fill-height align-end text-wrap" v-text="anime.russian"
-                        style="font-size: 2.5em; font-weight: 600; font-family: 'Kashima', sans-serif; letter-spacing: 8px; line-height: 100%;"></v-card-title>
+          <v-card-title class="fill-height align-end text-wrap top-slider-anime-title" v-text="anime.russian"
+                        style=""></v-card-title>
           <v-card-subtitle class="pt-0">Оценка {{ anime.score }}</v-card-subtitle>
           <v-card-text class="top-slider-anime-cart-text">
             <p> {{ cleanDescription(anime.description) }}</p>
@@ -90,6 +90,13 @@ export default {
 
 .top-slider-anime-image
   width: 48%
+
+.top-slider-anime-title
+  font-size: 2.5em
+  font-weight: 600
+  font-family: 'Kashima', sans-serif
+  letter-spacing: 8px
+  line-height: 100%
 
 .top-slider-anime-cart-text
   width: 70%

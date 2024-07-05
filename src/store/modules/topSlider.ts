@@ -62,12 +62,10 @@ async function fetchAnimeData(commit: any) {
             query {
                 animes(season: "2023_2024", limit: 5, order: popularity, status: "released", kind: "tv") {
                     id
-                    name
                     russian
                     score
                     poster {
                         originalUrl
-                        miniUrl
                     }
                     description
                     }

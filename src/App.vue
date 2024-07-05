@@ -17,6 +17,7 @@ export default defineComponent({
     };
   },
   mounted() {
+
     watch(
         () => this.$route,
         (to: RouteLocationNormalized, from: RouteLocationNormalized) => {

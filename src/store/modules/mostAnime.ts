@@ -75,7 +75,7 @@ async function fetchAnimeData(commit: any) {
                       year
                     }
                   }
-                  anonseAnime: animes(season: "2024", limit: 6, order: name, status: "anons", kind: "tv") {
+                  anonseAnime: animes(season: "2023_2024", limit: 6, order: popularity, status: "anons", kind: "tv,ona,ova") {
                     id
                     russian
                     kind

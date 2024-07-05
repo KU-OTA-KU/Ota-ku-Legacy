@@ -41,7 +41,7 @@ body {
     font-size: var(--ota-ku-font-clamp);
     background-color: var(--cl-3);
     color: var(--cl-2);
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -55,6 +55,8 @@ body {
     }
 }
 
+
+
 // custom sizes for vuetify
 .ota-anime-containers {
     .ota-anime-containers-v-title {
@@ -65,7 +67,7 @@ body {
         font-family: 'Kashima', sans-serif !important;
 
         .v-btn {
-            font-family: 'Monsterrat', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
     }
 
