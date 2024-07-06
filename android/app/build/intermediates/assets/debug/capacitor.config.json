@@ -1,0 +1,6 @@
+{
+	"appId": "com.otaku.app",
+	"appName": "ota-ku",
+	"webDir": "dist",
+	"plugins": {}
+}
