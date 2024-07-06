@@ -35,7 +35,7 @@
             >
               <v-row no-gutters class="flex-nowrap">
                 <v-img
-                    :lazy-src="anime.poster.miniUrl"
+                    :lazy-src="anime.poster.mainUrl"
                     :src="anime.poster.mainUrl"
                     rounded="lg"
                     cover
